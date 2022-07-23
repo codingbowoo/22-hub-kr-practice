@@ -18,30 +18,29 @@ demo-model-link: https://huggingface.co/spaces/pytorch/Transformer_NMT
 ---
 
 
-### Model Description
+### 모델 설명
 
-The Transformer, introduced in the paper [Attention Is All You Need][1], is a
-powerful sequence-to-sequence modeling architecture capable of producing
-state-of-the-art neural machine translation (NMT) systems.
+논문 [Attention Is All You Need][1]에 소개되었던 트랜스포머는  
+강력한 시퀀스-투-시퀀스 모델링 아키텍처로 최신 기계 신경망 번역 시스템을 가능하게 합니다.
 
-Recently, the fairseq team has explored large-scale semi-supervised training of
-Transformers using back-translated data, further improving translation quality
-over the original model. More details can be found in [this blog post][2].
+최근, `fairseq`팀은 역번역된 데이터를 활용한 
+트랜스포머의 대규모 준지도 학습을 통해 번역 수준을 기존보다 향상시켰습니다.
+더 자세한 내용은 [블로그 포스트][2]를 통해 찾으실 수 있습니다.
 
 
-### Requirements
+### 요구사항
 
-We require a few additional Python dependencies for preprocessing:
+전처리 과정을 위해 추가적인 Python 의존성이 필요합니다.
 
 ```bash
 pip install bitarray fastBPE hydra-core omegaconf regex requests sacremoses subword_nmt
 ```
 
 
-### English-to-French Translation
+### 영어 ➡️ 프랑스어 번역
 
-To translate from English to French using the model from the paper [Scaling
-Neural Machine Translation][3]:
+영어를 프랑스어로 번역하기 위해 [Scaling
+Neural Machine Translation][3] 논문의 모델을 활용합니다:
 
 ```python
 import torch
@@ -81,20 +80,18 @@ assert fr == en2fr.decode(fr_sample)
 ```
 
 
-### English-to-German Translation
+### 영어 ➡️ 독일어 번역
 
-Semi-supervised training with back-translation is an effective way of improving
-translation systems. In the paper [Understanding Back-Translation at Scale][4],
-we back-translate over 200 million German sentences to use as additional
-training data. An ensemble of five of these models was the winning submission to
-the [WMT'18 English-German news translation competition][5].
+역번역에 대한 준지도학습은 번역 시스템을 향상시키는데 효율적인 방법입니다.
+논문 [Understanding Back-Translation at Scale][4]에서,
+추가적인 학습 데이터로 사용하기 위해 2억개 이상의 독일어 문장을 역번역합니다. 이 다섯 모델들의 앙상블은 [WMT'18 English-German news translation competition][5]의 수상작입니다.
 
-We can further improved this approach through [noisy-channel reranking][6]. More
-details can be found in [this blog post][7]. An ensemble of models trained with
-this technique was the winning submission to the [WMT'19 English-German news
-translation competition][8].
+[noisy-channel reranking][6]을 통해 이 접근법을 더 향상시킬 수 있습니다. 
+더 자세한 내용은 [블로그 포스트][7]에서 볼 수 있습니다. 
+이러한 테크닉으로 학습된 모델들의 앙상블은 [WMT'19 English-German news
+translation competition][8]의 수상작입니다.
 
-To translate from English to German using one of the models from the winning submission:
+영어를 독일어로 번역하기 위해 이 수상 모델 중 하나를 사용합니다: 
 
 ```python
 import torch
@@ -110,7 +107,7 @@ de = en2de.translate('PyTorch Hub is a pre-trained model repository designed to 
 assert de == 'PyTorch Hub ist ein vorgefertigtes Modell-Repository, das die Reproduzierbarkeit der Forschung erleichtern soll.'
 ```
 
-We can also do a round-trip translation to create a paraphrase:
+교차 번역을 사용해 같은 문장에 대한 의역을 생성할 수도 있습니다:
 ```python
 # Round-trip translations between English and German:
 en2de = torch.hub.load('pytorch/fairseq', 'transformer.wmt19.en-de.single_model', tokenizer='moses', bpe='fastbpe')
@@ -128,7 +125,7 @@ assert paraphrase == 'PyTorch is a great interface!'
 ```
 
 
-### References
+### 참고
 
 - [Attention Is All You Need][1]
 - [Scaling Neural Machine Translation][3]
