@@ -24,9 +24,9 @@ use_gpu = True if torch.cuda.is_available() else False
 model = torch.hub.load('facebookresearch/pytorch_GAN_zoo:hub', 'DCGAN', pretrained=True, useGPU=use_gpu)
 ```
 
-The input to the model is a noise vector of shape `(N, 120)` where `N` is the number of images to be generated.
-It can be constructed using the function `.buildNoiseData`.
-The model has a `.test` function that takes in the noise vector and generates images.
+모델에 입력하는 노이즈 벡터의 크기는 `(N, 120)` 이며 여기서 `N`은 생성하고자 하는 이미지의 개수입니다.
+데이터 생성은 `.buildNoiseData` 함수를 사용하여 구성될 수 있습니다.
+모델의 `.test` 함수를 사용하면 노이즈 벡터를 입력받아 이미지를 생성합니다.
 
 ```python
 num_images = 64
@@ -41,9 +41,9 @@ plt.imshow(torchvision.utils.make_grid(generated_images).permute(1, 2, 0).cpu().
 # plt.show()
 ```
 
-You should see an image similar to the one on the left.
+왼쪽에 있는것과 유사한 이미지를 살펴볼 수 있습니다.
 
-If you want to train your own DCGAN and other GANs from scratch, have a look at [PyTorch GAN Zoo](https://github.com/facebookresearch/pytorch_GAN_zoo).
+만약 본 예제의 GANs과 다른 본인만의 DCGAN을 학습시키고 싶다면, 이곳을 살펴보세요 [PyTorch GAN Zoo](https://github.com/facebookresearch/pytorch_GAN_zoo).
 
 ### Model Description
 
