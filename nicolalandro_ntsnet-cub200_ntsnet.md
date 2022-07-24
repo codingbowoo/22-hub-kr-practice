@@ -22,7 +22,7 @@ model = torch.hub.load('nicolalandro/ntsnet-cub200', 'ntsnet', pretrained=True,
                        **{'topN': 6, 'device':'cpu', 'num_classes': 200})
 ```
 
-### Example Usage
+### 사용 예제
 
 ```python
 from torchvision import transforms
@@ -55,11 +55,11 @@ with torch.no_grad():
     print('bird class:', model.bird_classes[pred_id])
 ```
 
-### Model Description
-This is an nts-net pretrained with CUB200 2011 dataset, which is a fine grained dataset of birds species.
+### 모델 설명
+CUB200 2011 데이터셋으로 사전 학습된 nts-net으로, 조류 종의 세밀 데이터셋입니다.
 
-### References
-You can read the full paper at this [link](http://artelab.dista.uninsubria.it/res/research/papers/2019/2019-IVCNZ-Nawaz-Birds.pdf).
+### 참조
+ [link](http://artelab.dista.uninsubria.it/res/research/papers/2019/2019-IVCNZ-Nawaz-Birds.pdf) - 여기에서 전체 내용을 읽을 수 있습니다.
 ```bibtex
 @INPROCEEDINGS{Gallo:2019:IVCNZ,
   author={Nawaz, Shah and Calefati, Alessandro and Caraffini, Moreno and Landro, Nicola and Gallo, Ignazio},
