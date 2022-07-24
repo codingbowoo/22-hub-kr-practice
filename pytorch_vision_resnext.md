@@ -1,4 +1,11 @@
-
+---
+layout: hub_detail
+background-class: hub-background
+body-class: hub
+title: ResNext
+summary: Next generation ResNets, more efficient and accurate
+category: researchers
+image: resnext.png
 author: Pytorch Team
 tags: [vision, scriptable]
 github-link: https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py
