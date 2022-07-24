@@ -16,33 +16,23 @@ demo-model-link: https://huggingface.co/spaces/pytorch/RoBERTa
 ---
 
 
-### Model Description
+### 모델 설명
 
-Bidirectional Encoder Representations from Transformers, or [BERT][1], is a
-revolutionary self-supervised pretraining technique that learns to predict
-intentionally hidden (masked) sections of text. Crucially, the representations
-learned by BERT have been shown to generalize well to downstream tasks, and when
-BERT was first released in 2018 it achieved state-of-the-art results on many NLP
-benchmark datasets.
+Bidirectional Encoder Representations from Transformers, [BERT][1]는 텍스트에서 의도적으로 숨겨진(masked) 부분을 예측하는 학습에 획기적인 self-supervised pretraining 기술이다. 결정적으로 BERT가 학습한 표현은 downstream tasks에 잘 일반화되는 것으로 나타났으며, BERT가 처음 출시된 2018년에 많은 NLP benchmark datasets에서 state-of-the-art 결과를 달성했다.
 
-[RoBERTa][2] builds on BERT's language masking strategy and modifies key
-hyperparameters in BERT, including removing BERT's next-sentence pretraining
-objective, and training with much larger mini-batches and learning rates.
-RoBERTa was also trained on an order of magnitude more data than BERT, for a
-longer amount of time. This allows RoBERTa representations to generalize even
-better to downstream tasks compared to BERT.
+[RoBERTa][2]는 BERT의 language masking strategy를 기반으로 구축되며, BERT의 next-sentence pretraining objective를 제거하고 훨씬 더 큰 미니 배치와 학습 속도로 훈련하는 등 주요 하이퍼파라미터를 수정한다. 또한 RoBERTa는 더 오랜 시간 동안 BERT보다 훨씬 많은 데이터에 대해 학습되었다. 이를 통해 RoBERTa의 표현은 BERT와 비교해 downstream tasks을 훨씬 잘 일반화할 수 있다.
 
 
-### Requirements
+### 요구 사항
 
-We require a few additional Python dependencies for preprocessing:
+전처리 과정을 위해 추가적인 Python 의존성이 필요합니다.
 
 ```bash
 pip install regex requests hydra-core omegaconf
 ```
 
 
-### Example
+### 예시
 
 ##### Load RoBERTa
 ```python
@@ -95,7 +85,7 @@ logprobs = roberta.predict('new_task', tokens)  # tensor([[-1.1050, -1.0672, -1.
 ```
 
 
-### References
+### 참고
 
 - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding][1]
 - [RoBERTa: A Robustly Optimized BERT Pretraining Approach][2]
