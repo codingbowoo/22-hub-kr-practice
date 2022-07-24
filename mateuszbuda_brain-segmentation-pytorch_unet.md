@@ -23,10 +23,10 @@ model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
 
 ```
 
-Loads a U-Net model pre-trained for abnormality segmentation on a dataset of brain MRI volumes [kaggle.com/mateuszbuda/lgg-mri-segmentation](https://www.kaggle.com/mateuszbuda/lgg-mri-segmentation)
-The pre-trained model requires 3 input channels, 1 output channel, and 32 features in the first layer.
+위 코드는 뇌 MRI 볼륨 데이터 셋 [kaggle.com/mateuszbuda/lgg-mri-segmentation](https://www.kaggle.com/mateuszbuda/lgg-mri-segmentation)의 이상 탐지를 위해 사전 학습된 U-Net 모델을 불러옵니다. 
+사전 학습된 모델은 첫 번째 계층에서 3개의 입력 채널, 1개의 출력 채널 그리고 32개의 특징을 가져야 합니다.
 
-### Model Description
+### 모델 설명
 
 This U-Net model comprises four levels of blocks containing two convolutional layers with batch normalization and ReLU activation function, and one max pooling layer in the encoding part and up-convolutional layers instead in the decoding part.
 The number of convolutional filters in each block is 32, 64, 128, and 256.
@@ -36,12 +36,12 @@ Input image is a 3-channel brain MRI slice from pre-contrast, FLAIR, and post-co
 Output is a one-channel probability map of abnormality regions with the same size as the input image.
 It can be transformed to a binary segmentation mask by thresholding as shown in the example below.
 
-### Example
+### 예시
 
-Input images for pre-trained model should have 3 channels and be resized to 256x256 pixels and z-score normalized per volume.
+사전 학습된 모델에 입력되는 이미지는 3개의 채널을 가져야 하며 256x256 픽셀로 크기 조정 및 각 볼륨마다 z-점수로 정규화된 상태여야 합니다.
 
 ```python
-# Download an example image
+# 예시 이미지 다운로드 
 import urllib
 url, filename = ("https://github.com/mateuszbuda/brain-segmentation-pytorch/raw/master/assets/TCGA_CS_4944.png", "TCGA_CS_4944.png")
 try: urllib.URLopener().retrieve(url, filename)
@@ -72,7 +72,7 @@ with torch.no_grad():
 print(torch.round(output[0]))
 ```
 
-### References
+### 참고문헌 
 
 - [Association of genomic subtypes of lower-grade gliomas with shape features automatically extracted by a deep learning algorithm](http://arxiv.org/abs/1906.03720)
 - [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597)
