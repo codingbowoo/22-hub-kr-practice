@@ -23,15 +23,15 @@ model = torch.hub.load('huawei-noah/ghostnet', 'ghostnet_1x', pretrained=True)
 model.eval()
 ```
 
-All pre-trained models expect input images normalized in the same way,
-i.e. mini-batches of 3-channel RGB images of shape `(3 x H x W)`, where `H` and `W` are expected to be at least `224`.
-The images have to be loaded in to a range of `[0, 1]` and then normalized using `mean = [0.485, 0.456, 0.406]`
-and `std = [0.229, 0.224, 0.225]`.
+모든 사전 학습된 모델들은 입력 이미지가 동일한 방식으로 정규화 되는 것을 요구합니다. 
+다시 말해 `H`와 `W`가 적어도 `224`이고, `(3 x H x W)`의 shape를 가지는 3채널 RGB 이미지들의 미니배치를 말합니다.
+이 이미지들은 `[0, 1]`의 범위로 로드되어야 하고, `mean = [0.485, 0.456, 0.406]`
+과 `std = [0.229, 0.224, 0.225]`를 사용하여 정규화되어야 합니다.
 
 Here's a sample execution.
 
 ```python
-# Download an example image from the pytorch website
+# pytorch 웹사이트에서 예시 이미지를 다운로드
 import urllib
 url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
 try: urllib.URLopener().retrieve(url, filename)
@@ -81,20 +81,21 @@ for i in range(top5_prob.size(0)):
     print(categories[top5_catid[i]], top5_prob[i].item())
 ```
 
-### Model Description
+### 모델 설명
 
-The GhostNet architecture is based on an Ghost module structure which generate more features from cheap operations. Based on a set of intrinsic feature maps, a series of cheap operations are applied to generate many ghost feature maps that could fully reveal information underlying intrinsic features. Experiments conducted on benchmarks demonstrate that the superiority of GhostNet in terms of speed and accuracy tradeoff.
+고스트넷 아키텍처는 다양한 특징 맵을 효율적인 연산으로 생성하는 고스트 모듈 구조로 이루어집니다. 고유한 특징 맵을 기반으로 한 효율적인 연산으로 추론에 기반이 되는 고유 특징들을 충분하게 드러내는 고스트 특징 맵을 생성합니다. 벤치마크에서 수행된 실험을 통해 속도와 정확도의 상충 관계에 관한 고스트넷의 우수성을 보여줍니다.
 
-The corresponding accuracy on ImageNet dataset with pretrained model is listed below.
+사전 학습된 모델을 사용한 ImageNet 데이터셋에 따른 정확도는 아래에 나열되어 있습니다.
 
 | Model structure | FLOPs       | Top-1 acc   | Top-5 acc   |
 | --------------- | ----------- | ----------- | ----------- |
 |  GhostNet 1.0x  | 142M        | 73.98       | 91.46       |
 
 
-### References
+### 참고
 
-You can read the full paper at this [link](https://arxiv.org/abs/1911.11907).
+다음 [링크](https://arxiv.org/abs/1911.11907)에서 논문의 전체적인 내용에 대하여 읽을 수 있습니다.
+
 
 >@inproceedings{han2019ghostnet,
 >    title={GhostNet: More Features from Cheap Operations},
