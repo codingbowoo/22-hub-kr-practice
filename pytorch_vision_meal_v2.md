@@ -17,7 +17,7 @@ order: 10
 demo-model-link: https://huggingface.co/spaces/pytorch/MEAL-V2
 ---
 
-추가로 1개의 파이썬 패키지를 설치해야 합니다.
+`timm` 종속 패키지 설치가 필요합니다.
 
 ```bash
 !pip install timm
@@ -26,12 +26,12 @@ demo-model-link: https://huggingface.co/spaces/pytorch/MEAL-V2
 ```python
 import torch
 # 모델 종류: 'mealv1_resnest50', 'mealv2_resnest50', 'mealv2_resnest50_cutmix', 'mealv2_resnest50_380x380', 'mealv2_mobilenetv3_small_075', 'mealv2_mobilenetv3_small_100', 'mealv2_mobilenet_v3_large_100', 'mealv2_efficientnet_b0'
-# 사전에 학습된 "mealv2_resnest50_cutmix"을 로딩하는 예시입니다.
+# 사전에 학습된 "mealv2_resnest50_cutmix"을 불러오는 예시입니다.
 model = torch.hub.load('szq0214/MEAL-V2','meal_v2', 'mealv2_resnest50_cutmix', pretrained=True)
 model.eval()
 ```
 
-사전에 학습된 모든 모델은 동일한 방식으로 정규화된 입력 이미지, 즉, `H` 와 `W` 는 최소 `224` 이상인 `(3 x H x W)` 형태의 3-채널 RGB 이미지의 미니 배치를 요구합니다. 이미지를 `[0, 1]` 범위에서 로드한 다음 `mean = [0.485, 0.456, 0.406]` 과 `std = [0.229, 0.224, 0.225]` 를 통해 정규화합니다.
+사전에 학습된 모든 모델은 동일한 방식으로 정규화된 입력 이미지, 즉, `H` 와 `W` 는 최소 `224` 이상인 `(3 x H x W)` 형태의 3-채널 RGB 이미지의 미니 배치를 요구합니다. 이미지를 `[0, 1]` 범위에서 불러온 다음 `mean = [0.485, 0.456, 0.406]` 과 `std = [0.229, 0.224, 0.225]` 를 통해 정규화합니다.
 
 실행 예시입니다.
 
@@ -64,9 +64,9 @@ if torch.cuda.is_available():
 
 with torch.no_grad():
     output = model(input_batch)
-# shape이 1000이며 ImageNet의 1000개 클래스에 대한 신뢰도 점수(confidence score)가 있는 Tensor
+# 1000개의 ImageNet 클래스에 대한 신뢰도 점수(confidence score)를 가진 1000 크기의 Tensor
 print(output[0])
-# output엔 정규화되지 않은 신뢰도 점수가 있습니다. 확률 값을 얻으려면 소프트맥스를 실행하세요.
+# output엔 정규화되지 않은 신뢰도 점수가 있습니다. 확률 값을 얻으려면 softmax를 실행하세요.
 probabilities = torch.nn.functional.softmax(output[0], dim=0)
 print(probabilities)
 ```
