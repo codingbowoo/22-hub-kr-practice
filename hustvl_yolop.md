@@ -32,7 +32,7 @@ pip install -qr https://github.com/hustvl/YOLOP/blob/main/requirements.txt  # in
 &nbsp;
 
 <!-- - YOLOP is an efficient multi-task network that can jointly handle three crucial tasks in autonomous driving: object detection, drivable area segmentation and lane detection. And it is also the first to reach real-time on embedded devices while maintaining state-of-the-art level performance on the **BDD100K** dataset. -->
-- YOLOP는 자율 주행에서 세 가지 중요한 작업을 공동으로 처리할 수 있는 효율적인 다중 작업 네트워크 입니다.: 물체 감지(object detection), 주행 영역 분할(drivable area segmentation), 차선 인식(lane detection). 또한 YOLOP는  **BDD100K** 데이터셋에서 최신 기술(state-of-the-art)의 수준을 유지하면서 임베디드 기기에서 실시간성에 도달한 최초의 사례입니다.
+- YOLOP는 자율 주행에서 중요한, 다음의 세 가지 작업을 공동으로 처리할 수 있는 효율적인 다중 작업 네트워크 입니다.: 물체 감지(object detection), 주행 영역 분할(drivable area segmentation), 차선 인식(lane detection). 또한 YOLOP는  **BDD100K** 데이터셋에서 최신 기술(state-of-the-art)의 수준을 유지하면서 임베디드 기기에서 실시간성에 도달한 최초의 사례입니다.
 
 
 ### 결과
@@ -65,7 +65,7 @@ pip install -qr https://github.com/hustvl/YOLOP/blob/main/requirements.txt  # in
 | `ENet-SAD`    | 36.56   | 16.02  |
 | `YOLOP(ours)` | 70.50   | 26.20  |
 
-#### Ablation Studies 1: End-to-end v.s. Step-by-step
+#### 요소 제거 모델 평가 1 (Ablation Studies 1): End-to-end v.s. Step-by-step
 
 | Training_method | Recall(%) | AP(%) | mIoU(%) | Accuracy(%) | IoU(%) |
 | --------------- | --------- | ----- | ------- | ----------- | ------ |
@@ -75,7 +75,7 @@ pip install -qr https://github.com/hustvl/YOLOP/blob/main/requirements.txt  # in
 | `ED-S-W`        | 87.5      | 76.1  | 91.6    | 68.0        | 26.8   |
 | `End-to-end`    | 89.2      | 76.5  | 91.5    | 70.5        | 26.2   |
 
-#### Ablation Studies 2: Multi-task v.s. Single task
+#### 요소 제거 모델 평가 1 (Ablation Studies 2): Multi-task v.s. Single task
 
 | Training_method | Recall(%) | AP(%) | mIoU(%) | Accuracy(%) | IoU(%) | Speed(ms/frame) |
 | --------------- | --------- | ----- | ------- | ----------- | ------ | --------------- |
@@ -87,7 +87,7 @@ pip install -qr https://github.com/hustvl/YOLOP/blob/main/requirements.txt  # in
 **Notes**:
 
 <!-- - In table 4, E, D, S and W refer to Encoder, Detect head, two Segment heads and whole network. So the Algorithm (First, we only train Encoder and Detect head. Then we freeze the Encoder and Detect head as well as train two Segmentation heads. Finally, the entire network is trained jointly for all three tasks.) can be marked as ED-S-W, and the same for others. -->
-- 표 4에서 E, D, S, W는 인코더(Encoder), 검출 헤드(Detect head), 2개의 세그먼트 헤드(Segment heads) 와 전체 네트워크를 참조합니다. 그래서 알고리즘은 ED-S-W로 표기되며, 다른 알고리즘도 마찬가지입니다. (첫째, 인코더 및 검출 헤드만 교육합니다. 그 후, 인코더 및 검출 헤드를 동결하고 두 개의 분할(segmentation) 헤드를 학습합니다. 마지막으로, 전체 네트워크는 세 가지 작업 모두에 대해 함께 학습됩니다.)
+- 표 4에서 E, D, S, W는 인코더(Encoder), 검출 헤드(Detect head), 2개의 세그먼트 헤드(Segment heads) 와 전체 네트워크를 참조합니다. 그래서 알고리즘은 ED-S-W로 표기되며, 다른 알고리즘도 마찬가지입니다. (첫째, 인코더 및 검출 헤드만 학습합니다. 그 후, 인코더 및 검출 헤드를 고정하고 두 개의 분할(segmentation) 헤드를 학습합니다. 마지막으로, 전체 네트워크는 세 가지 작업 모두에 대해 함께 학습됩니다.)
 
 
 ### 시각화
@@ -107,9 +107,11 @@ pip install -qr https://github.com/hustvl/YOLOP/blob/main/requirements.txt  # in
 <img width="800" alt="Lane Detection Result" src="https://github.com/hustvl/YOLOP/raw/main/pictures/ll.png">
 &nbsp;
 
-**Notes**:
+<!-- **Notes**: -->
+**안내**:
 
-- The visualization of lane detection result has been post processed by quadratic fitting.
+<!-- - The visualization of lane detection result has been post processed by quadratic fitting. -->
+- 차선 인식의 시각화 결과는 이차 곡선 fitting(quadratic fitting)을 통해 후처리(post processed) 되었습니다.
 
 ### Deployment
 
@@ -132,7 +134,7 @@ img = torch.randn(1,3,640,640)
 det_out, da_seg_out,ll_seg_out = model(img)
 ```
 
-### 인용
+### 인용(Citation)
 
 <!-- See for more detail in [github code](https://github.com/hustvl/YOLOP) and [arxiv paper](https://arxiv.org/abs/2108.11250). -->
 더 자세한 내용은 [github code](https://github.com/hustvl/YOLOP)와 [arxiv paper](https://arxiv.org/abs/2108.11250)에서 볼 수 있습니다.
