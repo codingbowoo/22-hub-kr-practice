@@ -28,17 +28,17 @@ model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
 
 ### 모델 설명
 
-This U-Net model comprises four levels of blocks containing two convolutional layers with batch normalization and ReLU activation function, and one max pooling layer in the encoding part and up-convolutional layers instead in the decoding part.
-The number of convolutional filters in each block is 32, 64, 128, and 256.
-The bottleneck layer has 512 convolutional filters.
-From the encoding layers, skip connections are used to the corresponding layers in the decoding part.
-Input image is a 3-channel brain MRI slice from pre-contrast, FLAIR, and post-contrast sequences, respectively.
-Output is a one-channel probability map of abnormality regions with the same size as the input image.
-It can be transformed to a binary segmentation mask by thresholding as shown in the example below.
+U-Net 모델은 배치 정규화 및 ReLU 활성 함수를 가진 두 개의 합성곱 계층, 인코딩 과정의 맥스 풀링(max-pooling) 계층 그리고 디코딩 과정의 업 컨볼루셔널(up-convolutional) 계층을 포함한 네 가지 수준의 블록으로 구성됩니다.
+각 블록의 합성곱 필터 수는 32, 64, 128, 256개입니다.
+병목 계층(bottleneck layer)은 512개의 합성곱 필터를 가집니다.
+인코딩 과정의 계층에서 얻은 특징을 이에 상응하는 디코딩 과정의 계층에 합치는 스킵 연결(skip connections)이 진행됩니다.
+입력 이미지는 pre-contrast, FLAIR 및 post-contrast 과정에서 얻은 3-채널 뇌 MRI 슬라이스입니다.
+출력은 이상 탐지 영역을 가지는 입력 이미지와 동일한 크기의 1-채널 확률 지도(probability map)입니다.
+아래의 예시처럼 임계 값을 설정하면 출력 이미지를 이진 분할 마스크로 변환할 수 있습니다.
 
 ### 예시
 
-사전 학습된 모델에 입력되는 이미지는 3개의 채널을 가져야 하며 256x256 픽셀로 크기 조정 및 각 볼륨마다 z-점수로 정규화된 상태여야 합니다.
+사전 학습된 모델에 입력되는 이미지는 3개의 채널을 가져야 하며 256x256 픽셀로 크기가 조정되고 각 볼륨마다 z-점수로 정규화된 상태여야 합니다.
 
 ```python
 # 예시 이미지 다운로드 
