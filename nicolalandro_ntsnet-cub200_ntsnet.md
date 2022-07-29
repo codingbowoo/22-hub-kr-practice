@@ -56,7 +56,7 @@ with torch.no_grad():
 ```
 
 ### 모델 설명
-CUB200 2011 데이터셋으로 사전 학습된 nts-net으로, 조류 종의 세밀 데이터셋입니다.
+이 모델은 세분화된 조류 데이터셋인 CUB200 2011 데이터셋으로 사전 학습된 nts-net입니다.
 
 ### 참조
  [link](http://artelab.dista.uninsubria.it/res/research/papers/2019/2019-IVCNZ-Nawaz-Birds.pdf) - 여기에서 전체 내용을 읽을 수 있습니다.
