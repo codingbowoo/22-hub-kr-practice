@@ -83,18 +83,18 @@ for i in range(top5_prob.size(0)):
     print(categories[top5_catid[i]], top5_prob[i].item())
 ```
 
-### Model Description
+### 모델 설명
 
 Resnext 모델은 논문 [Aggregated Residual Transformations for Deep Neural Networks]에서 제안되었습니다. (https://arxiv.org/abs/1611.05431).
 이중 두가지 버전의 모델 성능은 아래와 같습니다. 각 모델의 레이어 개수는 각 50, 101개입니다.
 resnet50과 resnext50의 아키텍처 차이는 논문의 Table 1을 참고하십시오.
 ImageNet 데이터셋에 대한 사전훈련된 모델의 에러(성능)은 아래 표와 같습니다.
 
-|  Model structure  | Top-1 error | Top-5 error |
+| 모델 구조 | Top-1 오류 | Top-5 오류 |
 | ----------------- | ----------- | ----------- |
 |  resnext50_32x4d  | 22.38       | 6.30        |
 |  resnext101_32x8d | 20.69       | 5.47        |
 
-### References
+### 참고문헌
 
  - [Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431)
