@@ -66,16 +66,16 @@ print(probabilities)
 ```
 
 ```
-# Download ImageNet labels
+# ImageNet 데이터셋 레이블 다운로드
 !wget https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt
 ```
 
 ```
-# Read the categories
+# 카테고리(클래스) 읽기
 with open("imagenet_classes.txt", "r") as f:
     categories = [s.strip() for s in f.readlines()]
 
-# Show top categories per image
+# 각 이미지에 대한 top 5 카테고리 출력
 top5_prob, top5_catid = torch.topk(probabilities, 5)
 
 for i in range(top5_prob.size(0)):
@@ -84,10 +84,10 @@ for i in range(top5_prob.size(0)):
 
 ### Model Description
 
-Resnext models were proposed in [Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431).
-Here we have the 2 versions of resnet models, which contains 50, 101 layers repspectively.
-A comparison in model archetechure between resnet50 and resnext50 can be found in Table 1.
-Their 1-crop error rates on imagenet dataset with pretrained models are listed below.
+Resnext 모델은 논문 [Aggregated Residual Transformations for Deep Neural Networks]에서 제안되었습니다. (https://arxiv.org/abs/1611.05431).
+이중 두가지 버전의 모델 성능은 아래와 같습니다. 각 모델의 레이어 개수는 각 50, 101개입니다.
+resnet50과 resnext50의 아키텍처 차이는 논문의 Table 1을 참고하십시오.
+ImageNet 데이터셋에 대한 사전훈련된 모델의 에러(성능)은 아래 표와 같습니다.
 
 |  Model structure  | Top-1 error | Top-5 error |
 | ----------------- | ----------- | ----------- |
