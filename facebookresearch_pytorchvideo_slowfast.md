@@ -61,7 +61,7 @@ model = model.to(device)
 ```
 
 <!-- Download the id to label mapping for the Kinetics 400 dataset on which the torch hub models were trained. This will be used to get the category label names from the predicted class ids. -->
-토치 허브 모델 학습에 사용된 Kinetics 400 데이터셋 ID를 다운로드 합니다. ID는 라벨 매핑에 사용되며, 이는 예측 클래스 ID로부터 카테고리 라벨 이름을 가져오는데 사용됩니다.
+토치 허브 모델 학습에 사용된 Kinetics 400 데이터셋에 레이블 매핑(label mapping)을 진행하기 위해 ID를 다운로드 합니다. 이는 예측 클래스 ID로부터 카테고리 레이블 이름을 가져오는데 사용됩니다.
 
 ```python
 json_url = "https://dl.fbaipublicfiles.com/pyslowfast/dataset/class_names/kinetics_classnames.json"
