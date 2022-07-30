@@ -28,7 +28,7 @@ model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
 
 ### 모델 설명
 
-U-Net 모델은 배치 정규화 및 ReLU 활성 함수를 가진 두 개의 합성곱 계층, 인코딩 과정의 맥스 풀링(max-pooling) 계층 그리고 디코딩 과정의 업 컨볼루셔널(up-convolutional) 계층을 포함한 네 가지 수준의 블록으로 구성됩니다.
+U-Net 모델은 배치 정규화 및 ReLU 활성 함수를 가진 두 개의 합성곱 계층, 인코딩 과정의 맥스 풀링(max-pooling) 계층 그리고 디코딩 과정의 업 컨볼루셔널(up-convolutional) 계층을 포함한 네 가지 단계의 블록으로 구성됩니다.
 각 블록의 합성곱 필터 수는 32, 64, 128, 256개입니다.
 병목 계층(bottleneck layer)은 512개의 합성곱 필터를 가집니다.
 인코딩 과정의 계층에서 얻은 특징을 이에 상응하는 디코딩 과정의 계층에 합치는 스킵 연결(skip connections)이 진행됩니다.
